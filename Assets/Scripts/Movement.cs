@@ -37,6 +37,13 @@ public class Movement : MonoBehaviour
     private void ProcessRotation()
     {
         float rotationInput = rotation.ReadValue<float>();
-        Debug.Log("Rotation Input: " + rotationInput);
+        if (rotationInput < 0)
+        {
+            transform.Rotate(Vector3.forward);
+        }
+        if (rotationInput > 0)
+        {
+            transform.Rotate(-Vector3.forward);
+        }
     }
 }
