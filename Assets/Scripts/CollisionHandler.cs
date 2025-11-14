@@ -14,27 +14,28 @@ public class CollisionHandler : MonoBehaviour
                 LoadNextLevel();
                 break;
             default:
-                ReloadLevel();
+                Invoke("ReloadLevel", 2f); // Delay reload for 2 second
                 break;
         }
-
-        void LoadNextLevel()
-        {
-            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-            int nextSceneIndex = currentSceneIndex + 1;
-
-            if (nextSceneIndex >= SceneManager.sceneCountInBuildSettings)
-            {
-                nextSceneIndex = 0; // Loop back to the first scene
-            }
-
-            SceneManager.LoadScene(nextSceneIndex);
-        }
-
-        void ReloadLevel()
-        {
-            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-            SceneManager.LoadScene(currentSceneIndex);
-        }
     }
+
+    void LoadNextLevel()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currentSceneIndex + 1;
+
+        if (nextSceneIndex >= SceneManager.sceneCountInBuildSettings)
+        {
+            nextSceneIndex = 0; // Loop back to the first scene
+        }
+
+        SceneManager.LoadScene(nextSceneIndex);
+    }
+
+    void ReloadLevel()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
+    }
+
 }
