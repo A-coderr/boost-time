@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,9 +15,15 @@ public class CollisionHandler : MonoBehaviour
                 LoadNextLevel();
                 break;
             default:
-                Invoke("ReloadLevel", 2f); // Delay reload for 2 second
+                StartCrashSequence();
                 break;
         }
+    }
+
+    void StartCrashSequence()
+    {
+        GetComponent<Movement>().enabled = false; // Disable player movement
+        Invoke("ReloadLevel", 2f); // Delay reload for 2 second
     }
 
     void LoadNextLevel()
